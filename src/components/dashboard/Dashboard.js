@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 // import { communication } from "../../services/communcation";
-import ChakraBarChart from './ChakraBarChart';
 import lineGraph from '../../assets/ChatGPT.png';
 
 
