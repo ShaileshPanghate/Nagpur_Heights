@@ -1,0 +1,69 @@
+.project-details {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: #1e1e2f;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+    color: #f0f0f0;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+  }
+  
+  .project-details h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #ee801a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+  }
+  
+  .project-details p {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+  }
+  
+  .project-details strong {
+    color: #bbb;
+    font-weight: 600;
+    margin-right: 5px;
+  }
+  
+  .project-details button {
+    margin-top: 1.5rem;
+    background-color: #ee801a;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    color: #1e1e2f;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .project-details button:hover {
+    background-color: #ff9b3f;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .project-details {
+      margin: 1rem;
+      padding: 1rem;
+    }
+  
+    .project-details h2 {
+      font-size: 1.5rem;
+    }
+  
+    .project-details p {
+      font-size: 0.95rem;
+    }
+  
+    .project-details button {
+      width: 100%;
+      font-size: 1rem;
+    }
+  }
+  

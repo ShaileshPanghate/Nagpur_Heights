@@ -1,0 +1,102 @@
+.todo-container {
+  padding: 20px;
+  font-family: Robot, sans-serif;
+  min-width: 1200px;
+}
+
+.add-task-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-task-form input,
+.add-task-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 150px;
+  flex: 1;
+}
+
+.add-task-form button {
+  padding: 8px 12px;
+  background: #4b5563;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.board {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-height: 500px; /* set a fixed height for scrollability */
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+
+
+.column {
+  flex: 1;
+  min-width: 220px;
+  background: rgb(236, 235, 235);
+  padding: 10px;
+  border-radius: 6px;
+  min-height: 900px;
+}
+
+.column h3 {
+  font-family: Robot, sans-serif;
+  margin-top: 0;
+  color: #1f2937;
+}
+
+.task-card {
+  font-family: Robot, sans-serif;
+  background: white;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: grab;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.task-card p {
+  font-family: Robot, sans-serif;
+  margin: 5px 0;
+}
+
+.task-card .task-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.task-card .edit-btn,
+.task-card .delete-btn {
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.task-card .delete-btn {
+  background-color: #dc2626;
+}
+
+/* Priority coloring */
+.priority-low {
+  border-left: 5px solid #10b981; /* green */
+}
+.priority-medium {
+  border-left: 5px solid #f59e0b; /* amber */
+}
+.priority-high {
+  border-left: 5px solid #ef4444; /* red */
+}

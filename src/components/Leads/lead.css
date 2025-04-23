@@ -1,0 +1,116 @@
+.lead-container {
+  padding: 20px;
+  min-width: 1200px;
+  font-family: Roboto, sans-serif;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.lead-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.lead-form input,
+.lead-form select {
+  padding: 8px;
+  min-width: 150px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.lead-form button {
+  padding: 8px 12px;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.newBtn {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #e0e0e0;
+  cursor: pointer;
+}
+
+.newBtn:hover {
+  background-color: #333;
+  color: white;
+}
+
+.lead-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.lead-table th,
+.lead-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-weight: lighter;
+}
+
+.lead-table th {
+  font-family: 'Roboto', sans-serif;
+  background-color: #dedddd;
+  font-weight: 100;
+
+}
+
+.edit-btn {
+  padding: 4px 8px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-right: 5px;
+  cursor: pointer;
+  background: none;
+}
+
+.delete-btn {
+  padding: 4px 8px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: none;
+}
+.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.clickable-row:hover {
+  background-color: #f1f1f1;
+}
+.pagination-controls {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination-controls button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
