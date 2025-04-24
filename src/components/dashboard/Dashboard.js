@@ -1,5 +1,6 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+// import React, { useEffect } from "react";
 import "./dashboard.css";
 // import { communication } from "../../services/communcation";
 import lineGraph from '../../assets/ChatGPT.png';
@@ -16,6 +17,7 @@ const Dashboard = () => {
   const [animatedValues, setAnimatedValues] = useState(
     stats.map(() => 0) // Initial values
   );
+  console.log(setAnimatedValues)
   // const [products, setProducts] = useState([]);
 
   // const dashboardValue = async () => {
