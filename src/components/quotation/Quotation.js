@@ -21,9 +21,9 @@ const Quotation = () => {
     localStorage.setItem('real-estate-quote', JSON.stringify({ client, items }));
   }, [client, items]);
 
-  const handleClientChange = (e) => {
-    setClient(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  // const handleClientChange = (e) => {
+  //   setClient(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  // };
 
   const handleItemChange = (e) => {
     setItemInput(prev => ({ ...prev, [e.target.name]: e.target.value }));
