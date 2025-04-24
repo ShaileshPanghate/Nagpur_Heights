@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
+// import  { useEffect } from 'react'
 import './sidebar.css'
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/NAGPUR_HEIGHTS_LOGO.png';
-import onlyLogo from '../../assets/onlyLogo.png'
 import { FaHome, FaTasks, FaFileInvoice, FaUsers, FaBoxes, FaProjectDiagram, FaHandsHelping } from "react-icons/fa";
 
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; //
+// import { useNavigate } from "react-router-dom"; 
 import "./projects.css";
 
 const Projects = () => {
@@ -30,12 +30,12 @@ const Projects = () => {
   });
   
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
 
   const handleRowClick = (proj) => {
     localStorage.setItem("selectedProject", JSON.stringify(proj));
-    navigate("/project/${id}"); // ⬅️ Pass data via `state`
+    // navigate(`/project/${id}`); // ⬅️ Pass data via `state`
   };
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("projects")) || [];

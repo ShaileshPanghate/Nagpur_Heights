@@ -8,14 +8,14 @@ const Navbar = () => {
     const [open, setOpen] = useState(false);
     const [isLogIn, setIsLogIn] = useState(true);
 
-
+    console.log(setIsLogIn)
     const location = useLocation();
 
     // Extract the last segment of the pathname (e.g., 'dashboard' from '/dashboard')
     const pathSegments = location.pathname.split('/').filter(Boolean); // removes empty strings
     const pageName = pathSegments[pathSegments.length - 1] || 'SignUP';
 
-    const username = localStorage.getItem("username") || "User";
+    // const username = localStorage.getItem("username") || "User";
 
     // Capitalize first letter
     const capitalizedPageName = pageName.charAt(0).toUpperCase() + pageName.slice(1);

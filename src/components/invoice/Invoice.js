@@ -99,7 +99,6 @@ const Invoice = () => {
 
 
   const totalOriginalPrice = items.reduce((total, item, index) => total + item.price * quantities[index], 0);
-  // const totalPriceWithoutTax = items.reduce((total, item, index) => total + item.price * quantities[index], 0);
   const totalTaxAmount = items.reduce((total, item, index) => total + item.price * quantities[index] * (gstRates[index] + cgstRates[index]), 0);
   const totalItems = quantities.reduce((sum, q) => sum + q, 0); // ✅ define this here
   const totalDiscount = parseFloat(manualDiscount || 0);
