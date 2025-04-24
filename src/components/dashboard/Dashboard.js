@@ -42,22 +42,22 @@ const Dashboard = () => {
     card.style.setProperty('--y', `${y}px`);
   };
 
-  useEffect(() => {
-    const intervals = stats.map((stat, i) => {
-      return setInterval(() => {
-        setAnimatedValues(prev => {
-          const newValues = [...prev];
-          if (newValues[i] < stat.value) {
-            newValues[i] += Math.ceil(stat.value / 50);
-            if (newValues[i] > stat.value) newValues[i] = stat.value;
-          }
-          return newValues;
-        });
-      }, 30);
-    });
+  // useEffect(() => {
+  //   const intervals = stats.map((stat, i) => {
+  //     return setInterval(() => {
+  //       setAnimatedValues(prev => {
+  //         const newValues = [...prev];
+  //         if (newValues[i] < stat.value) {
+  //           newValues[i] += Math.ceil(stat.value / 50);
+  //           if (newValues[i] > stat.value) newValues[i] = stat.value;
+  //         }
+  //         return newValues;
+  //       });
+  //     }, 30);
+  //   });
 
-    return () => intervals.forEach(clearInterval);
-  }, [stats]);
+  //   return () => intervals.forEach(clearInterval);
+  // }, [stats]);
 
   const generateCalendar = () => {
     const today = new Date();
