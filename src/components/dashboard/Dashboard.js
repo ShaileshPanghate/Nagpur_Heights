@@ -57,7 +57,7 @@ const Dashboard = () => {
     });
 
     return () => intervals.forEach(clearInterval);
-  }, []);
+  }, [stats]);
 
   const generateCalendar = () => {
     const today = new Date();

@@ -15,7 +15,7 @@ const LeadDetails = () => {
         const selected = storedLeads.find(lead => lead.id.toString() === id);
         setLead(selected);
         console.log(lead);
-    }, [id]);
+    }, [lead]);
 
     if (!lead) return <div>Loading or Lead not found...</div>;
 
