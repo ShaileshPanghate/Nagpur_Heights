@@ -1,0 +1,104 @@
+.blocks-container {
+  padding: 2rem;
+  max-width: 1200px;
+  max-height: 90vh;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.block-list h3,
+.flats-grid h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.block-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.block-card {
+  background: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.block-card:hover {
+  background: #e6f0ff;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.back-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+.flats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.flat-card {
+  background: #fefefe;
+  border: 2px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.flat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Status colors */
+.flat-card.available {
+  border-color: #28a745;
+  background-color: #eafaf1;
+}
+
+.flat-card.sold {
+  border-color: #dc3545;
+  background-color: #fde8e8;
+}
+
+.flats-grid {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(80px, 1fr));
+    gap: 1rem;
+    max-height: 44vh; /* 👈 adjust as needed */
+    overflow-y: auto;  /* 👈 enables vertical scroll */
+    padding-right: 0.5rem; /* optional spacing for scrollbar */
+  }
+  
+  /* Optional scrollbar styling (Webkit browsers) */
+  .flats-grid::-webkit-scrollbar {
+    width: 6px;
+  }
+  .flats-grid::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+  }
+  
