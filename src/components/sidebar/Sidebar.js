@@ -2,7 +2,7 @@ import React, { useState} from 'react'
 // import  { useEffect } from 'react'
 import './sidebar.css'
 import { NavLink } from 'react-router-dom';
-import logo from '../../assets/NAGPUR_HEIGHTS_LOGO.png';
+import logo from '../../assets/onlyLogo.png';
 import { FaHome, FaTasks, FaFileInvoice, FaUsers, FaBoxes, FaProjectDiagram, FaHandsHelping } from "react-icons/fa";
 
 
