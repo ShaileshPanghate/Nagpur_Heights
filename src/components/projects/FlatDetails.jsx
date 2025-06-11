@@ -8,7 +8,7 @@ const FlatDetails = ({ flat, onBack, blockName }) => {
         ← Back to Flats
       </button>
 
-      <h2>Flat {flat.number} - {blockName}</h2>
+      <h2> {blockName} - {flat.number}</h2>
 
       <div className="flat-details-layout">
         {/* LEFT: Images */}
@@ -31,16 +31,12 @@ const FlatDetails = ({ flat, onBack, blockName }) => {
           <div className="detail-section">
             <h3>Basic Information</h3>
             <div className="detail-row">
-              <span>Status:</span>
-              <span className={flat.status.toLowerCase()}>{flat.status}</span>
-            </div>
-            <div className="detail-row">
               <span>Area:</span>
-              <span>{flat.area}</span>
+              <span>{flat.Area}</span>
             </div>
             <div className="detail-row">
-              <span>Rooms:</span>
-              <span>{flat.rooms} {flat.rooms > 1 ? 'rooms' : 'room'}</span>
+              <span>Price:</span>
+              <span>{flat.Price || 'Price on request'}</span>
             </div>
           </div>
 
@@ -48,13 +44,12 @@ const FlatDetails = ({ flat, onBack, blockName }) => {
             <h3>Ownership</h3>
             <div className="detail-row">
               <span>Owner:</span>
-              <span>{flat.owner}</span>
+              <span>Not Assigned</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   );
 };
 

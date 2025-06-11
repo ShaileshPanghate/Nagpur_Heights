@@ -1,83 +1,99 @@
 import React, { useState } from 'react';
 import FlatDetails from './FlatDetails';
 import './Blocks.css';
+import data from '../data.json';
 
-const Blocks = ({ projectId }) => {
-  // This would normally come from an API based on projectId
-  const [blocks] = useState([
-    { id: 'A', name: 'Block A', floors: 5, flatsPerFloor: 4 },
-    { id: 'B', name: 'Block B', floors: 5, flatsPerFloor: 4 },
-    { id: 'C', name: 'Block C', floors: 5, flatsPerFloor: 4 },
-    { id: 'D', name: 'Block D', floors: 5, flatsPerFloor: 4 },
-  ]);
-
+const Blocks = ({ project }) => {
   const [selectedBlock, setSelectedBlock] = useState(null);
-  const [flats, setFlats] = useState([]);
+  const [selectedFloor, setSelectedFloor] = useState(null);
+  const [selectedFlat, setSelectedFlat] = useState(null);
 
   const handleBlockClick = (block) => {
     setSelectedBlock(block);
-    // Generate mock flats data - in real app, this would come from API
-    const generatedFlats = [];
-    for (let floor = 1; floor <= block.floors; floor++) {
-      for (let flatNum = 1; flatNum <= block.flatsPerFloor; flatNum++) {
-        generatedFlats.push({
-          id: `${block.id}-${floor}${String.fromCharCode(64 + flatNum)}`,
-          number: `${floor}${String.fromCharCode(64 + flatNum)}`,
-          status: Math.random() > 0.5 ? 'Available' : 'Sold',
-          rooms: Math.floor(Math.random() * 4) + 1,
-          area: `${Math.floor(Math.random() * 500) + 500} sq.ft.`,
-          owner: Math.random() > 0.5 ? 'Available for purchase' : 'Mr. Sharma',
-        });
-      }
-    }
-    setFlats(generatedFlats);
+    setSelectedFloor(null);
+    setSelectedFlat(null);
   };
 
-  const [selectedFlat, setSelectedFlat] = useState(null);
+  const handleFloorClick = (floor) => {
+    setSelectedFloor(floor);
+    setSelectedFlat(null);
+  };
 
   return (
     <div className="blocks-container">
-      {!selectedBlock ? (
+      {/* Block List */}
+      {!selectedBlock && (
         <div className="block-list">
           <h3>Select a Block</h3>
           <div className="block-grid">
-            {blocks.map((block) => (
+            {project.Blocks.map((block) => (
               <div
-                key={block.id}
+                key={block.blockId}
                 className="block-card"
                 onClick={() => handleBlockClick(block)}
               >
-                {block.name}
+                {block.blockName}
               </div>
             ))}
           </div>
         </div>
-      ) : !selectedFlat ? (
-        <div>
-        <button onClick={() => setSelectedBlock(null)} className="back-button">
-          ← Back to Blocks
-        </button>
-        <h3>{selectedBlock.name} - Flats</h3>
-        <div className="flats-grid">
-          {flats.map((flat) => (
-            <div
-              key={flat.id}
-              className={`flat-card ${flat.status.toLowerCase()}`}
-              onClick={() => setSelectedFlat(flat)}
-            >
-              <div>Flat {flat.number}</div>
-              <div>Status: {flat.status}</div>
-              <div>{flat.area}</div>
-            </div>
-          ))}
+      )}
+
+      {/* Floor List */}
+      {selectedBlock && !selectedFloor && (
+        <div className="floor-list">
+          <button onClick={() => setSelectedBlock(null)} className="back-button">
+            ← Back to Blocks
+          </button>
+          <h3>{selectedBlock.blockName} - Select a Floor</h3>
+          <div className="floor-grid">
+            {selectedBlock.Floors.map((floor) => (
+              <div
+                key={floor.floorId}
+                className="floor-card"
+                onClick={() => handleFloorClick(floor)}
+              >
+                {floor.floor}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      
-      ) : (
-        <FlatDetails 
-          flat={selectedFlat} 
+      )}
+
+      {/* Flats List */}
+      {selectedFloor && !selectedFlat && (
+        <div>
+          <button onClick={() => setSelectedFloor(null)} className="back-button">
+            ← Back to Floors
+          </button>
+          <h3>{selectedBlock.blockName} - {selectedFloor.floor}</h3>
+          <div className="flats-grid">
+            {selectedFloor.flats.map((flat) => (
+              <div
+                key={flat.flatId}
+                className={`flat-card available`}
+                onClick={() => setSelectedFlat({
+                  number: flat.flat,
+                  area: flat.Area,
+                  status: flat.Price ? 'Sold' : 'Available',
+                  rooms: 3,
+                  owner: flat.Price ? 'Mr. Sharma' : 'Available for purchase',
+                })}
+              >
+                <div>{flat.flat}</div>
+                <div>{flat.Area}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Flat Details */}
+      {selectedFlat && (
+        <FlatDetails
+          flat={selectedFlat}
           onBack={() => setSelectedFlat(null)}
-          blockName={selectedBlock.name}
+          blockName={`${selectedBlock.blockName} - ${selectedFloor.floor} `}
         />
       )}
     </div>
