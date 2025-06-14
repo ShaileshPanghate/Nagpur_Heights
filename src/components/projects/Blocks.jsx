@@ -24,7 +24,9 @@ const Blocks = ({ project }) => {
       {/* Block List */}
       {!selectedBlock && (
         <div className="block-list">
-          <h3>Select a Block</h3>
+          <div className='block-button1'>
+            <h3>Select a Block</h3>
+          </div>
           <div className="block-grid">
             {project.Blocks.map((block) => (
               <div
@@ -42,12 +44,14 @@ const Blocks = ({ project }) => {
       {/* Floor List */}
       {selectedBlock && !selectedFloor && (
         <div className="floor-list">
-          <button onClick={() => setSelectedBlock(null)} className="back-button">
-            ← Back to Blocks
-          </button>
-          <h3>{selectedBlock.blockName} - Select a Floor</h3>
+          <div className="floors-button">
+            <button onClick={() => setSelectedBlock(null)} className="back-button">
+              ← Back to Blocks
+            </button>
+            <h3>{selectedBlock.blockName} - Select a Floor</h3>
+          </div>
           <div className="floor-grid">
-            {selectedBlock.Floors.map((floor) => (
+            {selectedBlock.Floors.slice().reverse().map((floor) => (
               <div
                 key={floor.floorId}
                 className="floor-card"
@@ -57,30 +61,41 @@ const Blocks = ({ project }) => {
               </div>
             ))}
           </div>
+          <hr /><hr />
         </div>
       )}
 
       {/* Flats List */}
       {selectedFloor && !selectedFlat && (
         <div>
-          <button onClick={() => setSelectedFloor(null)} className="back-button">
-            ← Back to Floors
-          </button>
-          <h3>{selectedBlock.blockName} - {selectedFloor.floor}</h3>
+          <div className='floor-button'>
+            <button onClick={() => setSelectedFloor(null)} className="back-button">
+              ← Back to Floors
+            </button>
+            <h3>{selectedBlock.blockName} - {selectedFloor.floor}</h3>
+          </div>
           <div className="flats-grid">
-            {selectedFloor.flats.map((flat) => (
+            {selectedFloor.flats.slice().reverse().map((flat) => (
               <div
                 key={flat.flatId}
-                className={`flat-card available`}
+                className={`flat-card ${flat.status}`}
                 onClick={() => setSelectedFlat({
                   number: flat.flat,
                   area: flat.Area,
+                  type: flat.flatType || flat.propertyType,
+                  Price: flat.Price,
+                  img1: flat.img1,
+                  img2: flat.img2,
+                  img3: flat.img3,
+                  img4: flat.img4,
+                  Info: flat.otherInfo,
                   status: flat.Price ? 'Sold' : 'Available',
                   rooms: 3,
-                  owner: flat.Price ? 'Mr. Sharma' : 'Available for purchase',
+                  owner: flat.status === 'sold' ? `${flat.Owner}` : 'Available for purchase',
                 })}
               >
                 <div>{flat.flat}</div>
+                <div>{flat.flatType}</div>
                 <div>{flat.Area}</div>
               </div>
             ))}

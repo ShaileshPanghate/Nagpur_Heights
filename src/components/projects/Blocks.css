@@ -1,7 +1,8 @@
 .blocks-container {
   padding: 2rem;
+  min-width: 900px;
   max-width: 1200px;
-  max-height: 90vh;
+  max-height: 120vh;
   margin: auto;
   font-family: 'Segoe UI', sans-serif;
 }
@@ -16,17 +17,17 @@
 
 .block-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
   gap: 1rem;
 }
 
 .block-card {
   background: #f5f5f5;
-  padding: 1.5rem;
+  padding: 1.8rem;
   border-radius: 8px;
   text-align: center;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: all 0.3s ease;
   border: 2px solid transparent;
@@ -54,14 +55,15 @@
 
 .flats-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(160px, 1fr));
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
   gap: 1rem;
 }
 
 .flat-card {
   background: #fefefe;
   border: 2px solid #ddd;
-  padding: 1rem;
+  padding: 1.8rem;
+  font-size: 1.2rem;
   border-radius: 8px;
   text-align: center;
   cursor: pointer;
@@ -86,9 +88,9 @@
 
 .flats-grid {
     display: grid;
-    grid-template-columns: repeat(8, minmax(80px, 1fr));
+    grid-template-columns: repeat(2, minmax(80px, 1fr));
     gap: 1rem;
-    max-height: 44vh; /* 👈 adjust as needed */
+    max-height: 50vh; /* 👈 adjust as needed */
     overflow-y: auto;  /* 👈 enables vertical scroll */
     padding-right: 0.5rem; /* optional spacing for scrollbar */
   }
@@ -106,19 +108,19 @@
 
 .floor-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(140px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(1, minmax(140px, 1fr));
+  gap: 0.4rem;
   margin-top: 1rem;
 }
 
 .floor-card {
-  background-color: #ffffff;
+  background-color: #f7f7f7;
   border: 2px solid #e0e0e0;
   border-radius: 12px;
-  padding: 16px;
+  padding: 1.4rem;
   text-align: center;
-  font-weight: 500;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -129,4 +131,19 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   border-color: #4caf50;
   background-color: #f9fff9;
+}
+
+.floor-button {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;    
+  justify-content: baseline; 
+  text-align: right;
+}
+.floors-button {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;    
+  justify-content: baseline; 
+  text-align: right;
 }

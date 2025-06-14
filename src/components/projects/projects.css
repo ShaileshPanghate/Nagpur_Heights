@@ -178,12 +178,14 @@
 .project-card {
   background: white;
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: 1.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
   border-left: 4px solid #3498db;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   min-height: 80px;
 }
@@ -248,3 +250,19 @@
     padding: 1rem;
   }
 }
+.project-button{
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;    
+  justify-content: baseline; 
+  text-align: right;
+  margin-top: -4%;
+  margin-left: 0%;
+}
+.project-card h6 {
+  margin-top: -4px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+
