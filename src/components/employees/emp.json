@@ -1,0 +1,55 @@
+{
+    "Employees":[
+    {
+      "id": 1,
+      "name": "Rahul Sharma",
+      "email": "rahul.sharma@example.com",
+      "phone": "+91-9876543210",
+      "department": "Sales",
+      "position": "Sales Executive",
+      "joiningDate": "2023-05-10",
+      "status": "Active",
+      "attendance": {
+        "2025-06-01": "Present",
+        "2025-06-02": "Present",
+        "2025-06-03": "Present",
+        "2025-06-04": "Absent",
+        "2025-06-05": "Present"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Anjali Verma",
+      "email": "anjali.verma@example.com",
+      "phone": "+91-9812345678",
+      "department": "Marketing",
+      "position": "Marketing Manager",
+      "joiningDate": "2022-11-01",
+      "status": "Active",
+      "attendance": {
+        "2025-06-01": "Present",
+        "2025-06-02": "Present",
+        "2025-06-03": "Present",
+        "2025-06-04": "Absent",
+        "2025-06-05": "Present"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Siddharth Mehta",
+      "email": "siddharth.mehta@example.com",
+      "phone": "+91-9123456789",
+      "department": "HR",
+      "position": "HR Executive",
+      "joiningDate": "2021-09-15",
+      "status": "On Leave",
+      "attendance": {
+        "2025-06-01": "Present",
+        "2025-06-02": "Present",
+        "2025-06-03": "Present",
+        "2025-06-04": "Absent",
+        "2025-06-05": "Present"
+      }
+    }
+  ]
+}

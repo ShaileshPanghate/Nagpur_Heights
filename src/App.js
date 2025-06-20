@@ -16,6 +16,7 @@ import Employee from "./components/employees/Employee";
 import Leads from "./components/Leads/Leads";
 import LeadDetails from "./components/Leads/LeadDetails";
 import ProjectDetails from "./components/projects/ProjectDetails";
+import EmployeeDetails from "./components/employees/EmployeeDetails";
 
 // import ProductTable from "./components/products/Products";
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/projects" element={<Projects/>} />
         <Route path="/project/:id" element={<ProjectDetails/>} />
         <Route path="/employees" element={<Employee/>} />
+        <Route path="/employee/:id" element={<EmployeeDetails />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/quotation" element={<Quotation />} />
         <Route path="/tasks" element={<Tasks />} />

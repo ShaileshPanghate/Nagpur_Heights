@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import FlatDetails from './FlatDetails';
 import './Blocks.css';
-import data from '../data.json';
 
 const Blocks = ({ project }) => {
   const [selectedBlock, setSelectedBlock] = useState(null);
