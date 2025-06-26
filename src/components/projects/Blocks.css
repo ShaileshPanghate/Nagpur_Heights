@@ -34,9 +34,9 @@
 }
 
 .block-card:hover {
-  background: #e6f0ff;
+  /* background: #e6f0ff; */
   border-color: #007bff;
-  color: #007bff;
+  /* color: #007bff; */
 }
 
 .back-button {

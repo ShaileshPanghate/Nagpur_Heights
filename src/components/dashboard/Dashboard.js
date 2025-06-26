@@ -1,19 +1,44 @@
 
-import React, { useState } from "react";
-// import React, { useEffect } from "react";
+import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 // import { communication } from "../../services/communcation";
 import lineGraph from '../../assets/ChatGPT.png';
-
+import data from '../data.json'
+import emp from '../employees/emp.json'
+import { FaUsers, FaProjectDiagram, FaTasks, FaHome, FaCheckCircle, FaRupeeSign } from "react-icons/fa";
 
 
 const Dashboard = () => {
+  const empp = emp.Employees;
+  const totalEmp = empp.length;
+  const projects = data.ProjectsList;
+  const totalProjects = projects.length;
+
+  const totalAvailableFlats = projects.reduce((total, project) => {
+    return total + project.Blocks.reduce((blockTotal, block) => {
+      return blockTotal + block.Floors.reduce((floorTotal, floor) => {
+        return floorTotal + floor.flats.filter(flat => flat.status === 'available').length;
+      }, 0);
+    }, 0);
+  }, 0);
+  const totalSoldFlats = projects.reduce((total, project) => {
+    return total + project.Blocks.reduce((blockTotal, block) => {
+      return blockTotal + block.Floors.reduce((floorTotal, floor) => {
+        return floorTotal + floor.flats.filter(flat => flat.status === 'sold').length;
+      }, 0);
+    }, 0);
+  }, 0);
   const stats = [
-    { label: "Total Users", value: 1250 },
-    { label: "Active Projects", value: 15 },
-    { label: "Pending Tasks", value: 42 },
-    { label: "Revenue", value: 12430 },
+    { label: "Total Users", value: 1250, icon: <FaUsers />, path: "/" },
+    { label: "Active Projects", value: totalProjects, icon: <FaProjectDiagram />, path: "/projects" },
+    { label: "Available Flats/Plots", value: totalAvailableFlats, icon: <FaHome />, path: "/projects" },
+    { label: "Sold Flats/Plots", value: totalSoldFlats, icon: <FaCheckCircle />, path: "/projects" },
+    { label: "Total Employees", value: totalEmp, icon: <FaUsers />, path: "/employees" },
+    { label: "Revenue", value: 12430, icon: <FaRupeeSign />, path: "/" },
   ];
+  
+
   const [animatedValues, setAnimatedValues] = useState(
     stats.map(() => 0) // Initial values
   );
@@ -35,31 +60,24 @@ const Dashboard = () => {
   // useEffect(() => {
   //   dashboardValue();
   // }, []);
-  const handleMouseMove = (e) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty('--x', `${x}px`);
-    card.style.setProperty('--y', `${y}px`);
-  };
 
-  // useEffect(() => {
-  //   const intervals = stats.map((stat, i) => {
-  //     return setInterval(() => {
-  //       setAnimatedValues(prev => {
-  //         const newValues = [...prev];
-  //         if (newValues[i] < stat.value) {
-  //           newValues[i] += Math.ceil(stat.value / 50);
-  //           if (newValues[i] > stat.value) newValues[i] = stat.value;
-  //         }
-  //         return newValues;
-  //       });
-  //     }, 30);
-  //   });
 
-  //   return () => intervals.forEach(clearInterval);
-  // }, [stats]);
+  useEffect(() => {
+    const intervals = stats.map((stat, i) => {
+      return setInterval(() => {
+        setAnimatedValues(prev => {
+          const newValues = [...prev];
+          if (newValues[i] < stat.value) {
+            const increment = Math.max(1, Math.ceil(stat.value / 100));
+            newValues[i] = Math.min(newValues[i] + increment, stat.value);
+          }
+          return newValues;
+        });
+      }, 0.1);
+    });
+
+    return () => intervals.forEach(clearInterval);
+  }, [stats]);
 
   const generateCalendar = () => {
     const today = new Date();
@@ -99,24 +117,32 @@ const Dashboard = () => {
   };
   return (
 
-    <div className="dashboard">
-      <div className="cards">
-        {stats.map((stat, i) => (
-          <div className="card" key={i} onMouseMove={handleMouseMove}>
-            <h3>{stat.label}</h3>
-            <p>{stat.label === "Revenue" ? `₹${animatedValues[i]}` : animatedValues[i]}</p>
-          </div>
-        ))}
-      </div>
-      <div className="cal-som">
-        <div>
-        <img src={lineGraph} alt="l" width="560px"  />
+    <div className="dashboard-scroll-wrapper">
+      <div className="dashboard">
+        <div className="cards">
+          {stats.map((stat, i) => (
+            <Link to={stat.path} key={i} className="card-link">
+              <div className="card">
+                <div className="card-icon">{stat.icon}</div>
+                <div>
+                  <h3>{stat.label}</h3>
+                  <p>{stat.label === "Revenue" ? `₹${animatedValues[i]}` : animatedValues[i]}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
-        <div className="calendar-container">
-          {generateCalendar()}
+        <div className="cal-som">
+          <div>
+            <img src={lineGraph} alt="l" width="560px" />
+          </div>
+          <div className="calendar-container">
+            {generateCalendar()}
+          </div>
         </div>
       </div>
     </div>
+
   );
 };
 

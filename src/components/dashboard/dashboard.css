@@ -1,6 +1,14 @@
+.dashboard-scroll-wrapper {
+  height: 80vh; /* Full screen */
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: #f4f4f4; 
+}
 .dashboard {
   padding: 1rem;
   min-width: 1200px;
+  flex-direction: column;
   margin-top: 0%;
   font-family: Roboto, sans-serif;
 }
@@ -47,22 +55,25 @@
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
   gap: 1.5rem;
 }
 
+
 .card {
-  background: white;
-  color: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  position: relative;
+  display: flex;
+   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  align-items: center;
+  gap: 46px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 250px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .card:hover {
   transform: translateY(-4px);
 }
@@ -83,6 +94,10 @@
 
 .card:hover::before {
   opacity: 1;
+}
+.card-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .cal-som{
@@ -136,4 +151,9 @@
   background: #3b82f6;
   color: white;
   font-weight: bold;
+}
+.card-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+  color: #007bff; /* Or any color you prefer */
 }
