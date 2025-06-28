@@ -297,6 +297,92 @@
           }
          
         ]
+      },
+       {
+        "projectId": "P7",
+        "projectName": "Madhura Home's 3BHK",
+        "address": "Omkar Nagar, Near Kalode College, Nagpur",
+        "Blocks": [
+          {
+            "blockId": "P7-B1",
+            "blockName": "Block A",
+            "Floors": [
+              {
+                "floorId": "P7-B1-F1",
+                "floor": "Floor 1",
+                "flats": [
+                  { "flatId": "P7-B1-F1-F1", "flatType": "3BHK", "flat": "Flat No.1", "status": "available", "Area": "1750 sq. ft", "Price": "69 L", "Owner": "", "img1": "MadhuraHomes1.jpeg", "img2": "MadhuraHomes2.jpeg", "img3": "", "img4": "", "otherInfo": "Open Gym, Alloted Parking, Children play area, Rain water Harvesting, CCTV Security, Visitors Parking, Jogging Track, Video Door Phones, Modular Kitchen" },
+                  { "flatId": "P7-B1-F1-F2", "flatType": "3BHK", "flat": "Flat No.2", "status": "available",  "Area": "1750 sq. ft", "Price": "69 L", "Owner": "", "img1": "MadhuraHomes1.jpeg", "img2": "MadhuraHomes2.jpeg", "img3": "", "img4": "", "otherInfo": "Open Gym, Alloted Parking, Children play area, Rain water Harvesting, CCTV Security, Visitors Parking, Jogging Track, Video Door Phones, Modular Kitchen"  }
+                ]
+              },
+              {
+                "floorId": "P7-B1-F2",
+                "floor": "Floor 2",
+                "flats": [
+                  { "flatId": "P7-B1-F2-F1", "flatType": "3BHK", "flat": "Flat No.3", "status": "available",  "Area": "1750 sq. ft", "Price": "69 L", "Owner": "", "img1": "MadhuraHomes1.jpeg", "img2": "MadhuraHomes2.jpeg", "img3": "", "img4": "", "otherInfo": "Open Gym, Alloted Parking, Children play area, Rain water Harvesting, CCTV Security, Visitors Parking, Jogging Track, Video Door Phones, Modular Kitchen" },
+                  { "flatId": "P7-B1-F2-F2", "flatType": "3BHK", "flat": "Flat No.4", "status": "available",  "Area": "1750 sq. ft", "Price": "69 L", "Owner": "", "img1": "MadhuraHomes1.jpeg", "img2": "MadhuraHomes2.jpeg", "img3": "", "img4": "", "otherInfo": "Open Gym, Alloted Parking, Children play area, Rain water Harvesting, CCTV Security, Visitors Parking, Jogging Track, Video Door Phones, Modular Kitchen"  }
+                ]
+              },
+              {
+                "floorId": "P7-B1-F3",
+                "floor": "Floor 3",
+                "flats": [
+                  { "flatId": "P7-B1-F3-F1", "flatType": "3BHK", "flat": "Flat No.5", "status": "available",  "Area": "1750 sq. ft", "Price": "69 L", "Owner": "", "img1": "MadhuraHomes1.jpeg", "img2": "MadhuraHomes2.jpeg", "img3": "", "img4": "", "otherInfo": "Open Gym, Alloted Parking, Children play area, Rain water Harvesting, CCTV Security, Visitors Parking, Jogging Track, Video Door Phones, Modular Kitchen"  },
+                  { "flatId": "P7-B1-F3-F2", "flatType": "3BHK", "flat": "Flat No.6", "status": "available",  "Area": "1750 sq. ft", "Price": "69 L", "Owner": "", "img1": "MadhuraHomes1.jpeg", "img2": "MadhuraHomes2.jpeg", "img3": "", "img4": "", "otherInfo": "Open Gym, Alloted Parking, Children play area, Rain water Harvesting, CCTV Security, Visitors Parking, Jogging Track, Video Door Phones, Modular Kitchen"  }
+                ]
+              }
+            ]
+          },
+          {
+            "blockId": "P7-B2",
+            "blockName": "Block B",
+            "Floors": [
+              {
+                "floorId": "P7-B2-F1",
+                "floor": "Floor 1",
+                "flats": [
+                  { "flatId": "P7-B2-F1-F1", "flatType": "3BHK", "flat": "Flat No.1", "status": "available",  "Area": "1750 sq. ft", "Price": "69 L", "Owner": "", "img1": "MadhuraHomes1.jpeg", "img2": "MadhuraHomes2.jpeg", "img3": "", "img4": "", "otherInfo": "Open Gym, Alloted Parking, Children play area, Rain water Harvesting, CCTV Security, Visitors Parking, Jogging Track, Video Door Phones, Modular Kitchen" },
+                  { "flatId": "P7-B2-F1-F2", "flatType": "3BHK", "flat": "Flat No.2", "status": "available",  "Area": "1750 sq. ft", "Price": "69 L", "Owner": "", "img1": "MadhuraHomes1.jpeg", "img2": "MadhuraHomes2.jpeg", "img3": "", "img4": "", "otherInfo": "Open Gym, Alloted Parking, Children play area, Rain water Harvesting, CCTV Security, Visitors Parking, Jogging Track, Video Door Phones, Modular Kitchen"  }
+                ]
+              },
+              {
+                "floorId": "P7-B2-F2",
+                "floor": "Floor 2",
+                "flats": [
+                  { "flatId": "P7-B2-F2-F1", "flatType": "3BHK", "flat": "Flat No.3", "status": "available",  "Area": "1750 sq. ft", "Price": "69 L", "Owner": "", "img1": "MadhuraHomes1.jpeg", "img2": "MadhuraHomes2.jpeg", "img3": "", "img4": "", "otherInfo": "Open Gym, Alloted Parking, Children play area, Rain water Harvesting, CCTV Security, Visitors Parking, Jogging Track, Video Door Phones, Modular Kitchen" },
+                  { "flatId": "P7-B2-F2-F2", "flatType": "3BHK", "flat": "Flat No.4", "status": "available",  "Area": "1750 sq. ft", "Price": "69 L", "Owner": "", "img1": "MadhuraHomes1.jpeg", "img2": "MadhuraHomes2.jpeg", "img3": "", "img4": "", "otherInfo": "Open Gym, Alloted Parking, Children play area, Rain water Harvesting, CCTV Security, Visitors Parking, Jogging Track, Video Door Phones, Modular Kitchen"  }
+                ]
+              }              
+            ]
+          }
+        ]
+      },
+       {
+        "projectId": "P8",
+        "projectName": "Infinia City, Nagpur",
+        "address": "Infinia City, Mohgaon, Nagpur",
+        "Blocks": [
+          {
+            "blockId": "P8-B1",
+            "blockName": "Block A",
+            "Floors": [
+              {
+                "floorId": "P8-B1-F1",
+                "floor": "Plots Section 1",
+                "flats": [
+                  { "flatId": "P8-B1-F1-F1", "propertyType": "Plot", "flat": "plot No.1", "status": "available", "Area": "₹ 1800-2000 /sq.ft", "Price": "", "Owner": "", "img1": "Infinia1.png", "img2": "Infinia2.PNG", "img3": "Infinia3.PNG", "img4": "Infinia4.PNG", "otherInfo": "Club Infinia Lobby, Swimming Pool / Kids Pool, Soothing Spa, Steam & Sauna, Kids Play Area, Jogging Track, Hi-Tech Gymnasium , Indoor Sports Arena, Badminton Court, Dance & Aerobic Room, Pool Side Cafe, Crèche, Banquet Hall,  Green Party Lawn, Multipurpose Court, Barbeque Area, Mini-Theatre, Turf (Net Cricket & Football), Court (Badminton & Tennis & Basketball ), Open Air Gym, Kids Play Area, Pergola & Seating, Yoga Area, Walking & Cycling Track, Skating Zone, Mound Sculpture " },
+                  { "flatId": "P8-B1-F1-F2", "propertyType": "Plot", "flat": "Plot No.2", "status": "available", "Area": "₹ 1800-2000 sq. ft", "Price": "", "Owner": "", "img1": "Infinia1.png", "img2": "Infinia2.PNG", "img3": "Infinia3.PNG", "img4": "Infinia4.PNG", "otherInfo": "Club Infinia Lobby, Swimming Pool / Kids Pool, Soothing Spa, Steam & Sauna, Kids Play Area, Jogging Track, Hi-Tech Gymnasium , Indoor Sports Arena, Badminton Court, Dance & Aerobic Room, Pool Side Cafe, Crèche, Banquet Hall,  Green Party Lawn, Multipurpose Court, Barbeque Area, Mini-Theatre, Turf (Net Cricket & Football), Court (Badminton & Tennis & Basketball ), Open Air Gym, Kids Play Area, Pergola & Seating, Yoga Area, Walking & Cycling Track, Skating Zone, Mound Sculpture " },
+                  { "flatId": "P8-B1-F1-F3", "propertyType": "Plot", "flat": "Plot No.3", "status": "available", "Area": "₹ 1800-2000 sq. ft", "Price": "", "Owner": "", "img1": "Infinia1.png", "img2": "Infinia2.PNG", "img3": "Infinia3.PNG", "img4": "Infinia4.PNG", "otherInfo": "Club Infinia Lobby, Swimming Pool / Kids Pool, Soothing Spa, Steam & Sauna, Kids Play Area, Jogging Track, Hi-Tech Gymnasium , Indoor Sports Arena, Badminton Court, Dance & Aerobic Room, Pool Side Cafe, Crèche, Banquet Hall,  Green Party Lawn, Multipurpose Court, Barbeque Area, Mini-Theatre, Turf (Net Cricket & Football), Court (Badminton & Tennis & Basketball ), Open Air Gym, Kids Play Area, Pergola & Seating, Yoga Area, Walking & Cycling Track, Skating Zone, Mound Sculpture " },
+                  { "flatId": "P8-B1-F1-F4", "propertyType": "Plot", "flat": "Plot No.4", "status": "available", "Area": "₹ 1800-2000 sq. ft", "Price": "", "Owner": "", "img1": "Infinia1.png", "img2": "Infinia2.PNG", "img3": "Infinia3.PNG", "img4": "Infinia4.PNG", "otherInfo": "Club Infinia Lobby, Swimming Pool / Kids Pool, Soothing Spa, Steam & Sauna, Kids Play Area, Jogging Track, Hi-Tech Gymnasium , Indoor Sports Arena, Badminton Court, Dance & Aerobic Room, Pool Side Cafe, Crèche, Banquet Hall,  Green Party Lawn, Multipurpose Court, Barbeque Area, Mini-Theatre, Turf (Net Cricket & Football), Court (Badminton & Tennis & Basketball ), Open Air Gym, Kids Play Area, Pergola & Seating, Yoga Area, Walking & Cycling Track, Skating Zone, Mound Sculpture " },
+                  { "flatId": "P8-B1-F1-F5", "propertyType": "Plot", "flat": "Plot No.5", "status": "available", "Area": "₹ 1800-2000 sq. ft", "Price": "", "Owner": "", "img1": "Infinia1.png", "img2": "Infinia2.PNG", "img3": "Infinia3.PNG", "img4": "Infinia4.PNG", "otherInfo": "Club Infinia Lobby, Swimming Pool / Kids Pool, Soothing Spa, Steam & Sauna, Kids Play Area, Jogging Track, Hi-Tech Gymnasium , Indoor Sports Arena, Badminton Court, Dance & Aerobic Room, Pool Side Cafe, Crèche, Banquet Hall,  Green Party Lawn, Multipurpose Court, Barbeque Area, Mini-Theatre, Turf (Net Cricket & Football), Court (Badminton & Tennis & Basketball ), Open Air Gym, Kids Play Area, Pergola & Seating, Yoga Area, Walking & Cycling Track, Skating Zone, Mound Sculpture " },
+                  { "flatId": "P8-B1-F1-F6", "propertyType": "Plot", "flat": "Plot No.6", "status": "available", "Area": "₹ 1800-2000 sq. ft", "Price": "", "Owner": "", "img1": "Infinia1.png", "img2": "Infinia2.PNG", "img3": "Infinia3.PNG", "img4": "Infinia4.PNG", "otherInfo": "Club Infinia Lobby, Swimming Pool / Kids Pool, Soothing Spa, Steam & Sauna, Kids Play Area, Jogging Track, Hi-Tech Gymnasium , Indoor Sports Arena, Badminton Court, Dance & Aerobic Room, Pool Side Cafe, Crèche, Banquet Hall,  Green Party Lawn, Multipurpose Court, Barbeque Area, Mini-Theatre, Turf (Net Cricket & Football), Court (Badminton & Tennis & Basketball ), Open Air Gym, Kids Play Area, Pergola & Seating, Yoga Area, Walking & Cycling Track, Skating Zone, Mound Sculpture " }
+                ]
+              }
+              
+            ]
+          }
+         
+        ]
       }
     ]
   }

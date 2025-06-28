@@ -150,3 +150,19 @@
     background-color: #ccc;
     color: #333;
   }
+
+
+  /* Custom scrollbar */
+.employee-details-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.employee-details-wrapper::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+.employee-details-wrapper::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+.employee-details-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}

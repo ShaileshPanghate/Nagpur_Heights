@@ -7,6 +7,8 @@ import lineGraph from '../../assets/ChatGPT.png';
 import data from '../data.json'
 import emp from '../employees/emp.json'
 import { FaUsers, FaProjectDiagram, FaTasks, FaHome, FaCheckCircle, FaRupeeSign } from "react-icons/fa";
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
 
 
 const Dashboard = () => {
@@ -37,7 +39,7 @@ const Dashboard = () => {
     { label: "Total Employees", value: totalEmp, icon: <FaUsers />, path: "/employees" },
     { label: "Revenue", value: 12430, icon: <FaRupeeSign />, path: "/" },
   ];
-  
+
 
   const [animatedValues, setAnimatedValues] = useState(
     stats.map(() => 0) // Initial values
@@ -61,6 +63,28 @@ const Dashboard = () => {
   //   dashboardValue();
   // }, []);
 
+  // for pieChart
+  // for pieChart
+  const flatAndPlotData = { flats: 0, plots: 0 };
+
+  projects.forEach(project => {
+    project.Blocks.forEach(block => {
+      block.Floors.forEach(floor => {
+        floor.flats.forEach(flat => {
+          if (flat.propertyType?.toLowerCase() === 'plot') {
+            flatAndPlotData.plots++;
+          } else {
+            flatAndPlotData.flats++;
+          }
+        });
+      });
+    });
+  });
+
+  const pieChartData = [
+    { name: "Flats", value: flatAndPlotData.flats },
+    { name: "Plots", value: flatAndPlotData.plots },
+  ];  // for pieChart
 
   useEffect(() => {
     const intervals = stats.map((stat, i) => {
@@ -116,13 +140,12 @@ const Dashboard = () => {
     );
   };
   return (
-
     <div className="dashboard-scroll-wrapper">
       <div className="dashboard">
         <div className="cards">
           {stats.map((stat, i) => (
             <Link to={stat.path} key={i} className="card-link">
-              <div className="card">
+              <div className="card" >
                 <div className="card-icon">{stat.icon}</div>
                 <div>
                   <h3>{stat.label}</h3>
@@ -134,12 +157,39 @@ const Dashboard = () => {
         </div>
         <div className="cal-som">
           <div>
-            <img src={lineGraph} alt="l" width="560px" />
+            {/* <img src={lineGraph} alt="l" width="560px" /> */}
+            <div className="chart-container">
+              <h3>Flats vs Plots</h3>
+              <ResponsiveContainer width={300} height={300}>
+                <PieChart>
+                  <Pie
+                    data={pieChartData}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={100}
+                    label
+                    isAnimationActive={true}        // ✅ Enables animation
+                    animationDuration={1500}       // ✅ 1.5 seconds
+                    animationEasing="ease-out"     // ✅ Smooth ending
+                  >
+                    <Cell key="flats" fill="#8884d8" />
+                    <Cell key="plots" fill="#82ca9d" />
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
           </div>
           <div className="calendar-container">
             {generateCalendar()}
+
           </div>
+
         </div>
+
       </div>
     </div>
 

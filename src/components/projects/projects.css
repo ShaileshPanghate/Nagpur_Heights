@@ -80,7 +80,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,7 +92,7 @@
   border-radius: 10px;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .modal h3 {
@@ -130,6 +130,7 @@
 .cancel-btn {
   background-color: #999;
 }
+
 .clickable-row {
   cursor: pointer;
   transition: background-color 0.3s;
@@ -139,12 +140,10 @@
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.material-symbols-outlined{
+.material-symbols-outlined {
   border: none;
   background: none;
-} 
-
-
+}
 
 /*  */
 /*  */
@@ -154,6 +153,10 @@
 .projects-container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1200px;
+  height: 70vh;  /* Full screen height */
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
   margin: 0 auto;
   padding: 2rem;
   color: #333;
@@ -170,15 +173,20 @@
 
 .project-list {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-top: 1rem;
+  overflow-y: auto; /* Enables vertical scroll */
+  padding: 16px;
 }
+ 
+
 
 .project-card {
   background: white;
   border-radius: 8px;
   padding: 1.4rem;
+  padding-bottom: 1.8rem;
   font-size: 1.4rem;
   font-weight: 600;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -187,7 +195,7 @@
   border-left: 4px solid #3498db;
   /* display: flex; */
   align-items: center;
-  min-height: 80px;
+  min-height: 140px;
 }
 
 .project-card:hover {
@@ -198,6 +206,32 @@
 
 .project-card:active {
   transform: translateY(1px);
+}
+/* Custom Scrollbar for Webkit browsers (Chrome, Edge, Safari) */
+.project-list::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+}
+
+.project-list::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light background for the track */
+  border-radius: 4px;
+}
+
+.project-list::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scroll thumb */
+  border-radius: 4px;
+  border: 2px solid transparent; /* Adds spacing inside thumb */
+  background-clip: content-box;
+}
+
+.project-list::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker on hover */
+}
+
+/* Firefox support */
+.project-list {
+  scrollbar-width: thin;         /* "auto" or "thin" */
+  scrollbar-color: #888 #f1f1f1; /* thumb and track */
 }
 
 .back-button {
@@ -231,11 +265,11 @@
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1rem;
   }
-  
+
   .projects-container {
     padding: 1rem;
   }
-  
+
   .projects-container h2 {
     font-size: 1.7rem;
   }
@@ -245,24 +279,24 @@
   .project-list {
     grid-template-columns: 1fr;
   }
-  
+
   .project-card {
     padding: 1rem;
   }
 }
-.project-button{
+
+.project-button {
   display: flex;
   align-items: baseline;
-  gap: 1rem;    
-  justify-content: baseline; 
+  gap: 1rem;
+  justify-content: baseline;
   text-align: right;
   margin-top: -4%;
   margin-left: 0%;
 }
+
 .project-card h6 {
   margin-top: -4px;
   font-weight: 500;
   line-height: 1.4;
 }
-
-
