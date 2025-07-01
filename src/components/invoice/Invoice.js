@@ -1,232 +1,142 @@
-import React, { useState, useEffect } from 'react';
-import './invoice.css';
+// QuotationForm.jsx
+import React, { useState, useRef } from "react";
+import html2pdf from "html2pdf.js";
+import { v4 as uuidv4 } from "uuid";
+import "./invoice.css";
 
-const Invoice = () => {
-  // const [items, setItems] = useState([
-  //   { name: 'New Saree', price: 1000, original: 1999, discount: '50', seller: 'MahaHandloom', delivery: '13 Apr' },
-  //   { name: 'Kanji Silk', price: 16000, original: 17990, discount: '11', seller: 'MahaHandloom', delivery: '13 Apr' },
-  //   { name: 'Kanji Silk', price: 16000, original: 17990, discount: '11', seller: 'MahaHandloom', delivery: '13 Apr' },
-  //   { name: 'Cotton Wicks', price: 100, original: 150, discount: '33', seller: 'MahaHandloom', delivery: '13 Apr' },
-  //   { name: 'Carpet', price: 465, original: 480, discount: '1', seller: 'MahaHandloom', delivery: '13 Apr' },
-  // ]);
-  const [items, setItems] = useState([]);
+export default function Invoice() {
+  const [client, setClient] = useState({ name: "", contact: "", email: "", address: "" });
+  const [quotation, setQuotation] = useState({
+    id: uuidv4(),
+    date: new Date().toISOString().split("T")[0],
+    validTill: "",
+    executive: "",
+  });
 
-  const [quantities, setQuantities] = useState(Array(items.length).fill(1));
-  const [gstRates, setGstRates] = useState(Array(items.length).fill(0));
-  const [cgstRates, setCgstRates] = useState(Array(items.length).fill(0));
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [serviceCharge, setServiceCharge] = useState(100);
-  const [deliveryCharge, setDeliveryCharge] = useState(0);
-  const [manualDiscount, setManualDiscount] = useState(0);
+  const [items, setItems] = useState([
+    { id: uuidv4(), name: "", location: "", type: "", size: "", rate: 0, price: 0 }
+  ]);
+  const [tax, setTax] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [notes, setNotes] = useState("");
 
-  useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('cart')) || [];
-    setItems(stored);
-    setQuantities(stored.map(item => item.quantity || 1));
-    setGstRates(Array(stored.length).fill(0));
-    setCgstRates(Array(stored.length).fill(0));
-  }, []);
+  const formRef = useRef();
 
-  const increaseQty = (index) => {
-    const newQuantities = [...quantities];
-    newQuantities[index]++;
-    setQuantities(newQuantities);
-  };
+  const handleGeneratePDF = () => {
+    const element = formRef.current;
 
-  const decreaseQty = (index) => {
-    const newQuantities = [...quantities];
-    if (newQuantities[index] > 1) newQuantities[index]--;
-    setQuantities(newQuantities);
-  };
+    // Temporarily remove scroll style
+    element.classList.remove("scrollable-container");
 
-  const handleGstChange = (index, value) => {
-    const newRates = [...gstRates];
-    newRates[index] = parseFloat(value);
-    setGstRates(newRates);
-  };
+    const options = {
+      margin: 0.5,
+      filename: `Invoice.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
 
-  const handleCgstChange = (index, value) => {
-    const newRates = [...cgstRates];
-    newRates[index] = parseFloat(value);
-    setCgstRates(newRates);
-  };
-
-  const removeItem = (index) => {
-    const updatedItems = items.filter((_, i) => i !== index);
-    const updatedQuantities = quantities.filter((_, i) => i !== index);
-    const updatedGstRates = gstRates.filter((_, i) => i !== index);
-    const updatedCgstRates = cgstRates.filter((_, i) => i !== index);
-
-    setItems(updatedItems);
-    setQuantities(updatedQuantities);
-    setGstRates(updatedGstRates);
-    setCgstRates(updatedCgstRates);
-  };
-
-  const getDeliveryDate = () => {
-    const delivery = new Date();
-    delivery.setDate(delivery.getDate() + 3); // add 3 days
-
-    const options = { weekday: 'short', day: 'numeric', month: 'short' }; // e.g., Sun, 14 Apr
-    return delivery.toLocaleDateString('en-IN', options);
-  };
-
-  const sendToWhatsApp = () => {
-    if (!phoneNumber || phoneNumber.length < 10) {
-      alert("Please enter a valid WhatsApp number.");
-      return;
-    }
-
-    const message = `📦 *Invoice Summary*
-  🧾 Total Items: ${totalItems}
-  💰 💰 Original Price: ₹ ${totalOriginalPrice.toLocaleString()}
-  🎉 Discount: ₹ ${totalDiscount.toLocaleString()}
-  🚚 Delivery Charges: ${deliveryCharge}
-  🧾 GST + CGST: ₹ ${totalTaxAmount.toFixed(2)}
-  💼 Service Charge: ₹ ${parseFloat(serviceCharge || 0).toFixed(2)}
-  🧮 *Total Amount: ₹ ${totalPriceWithTax.toLocaleString()}*
-  💚 You saved ₹ ${totalDiscount.toLocaleString()} on this order!
-  
-  
-  🛍️ Thank you for shopping with us!`;
-
-    const encodedMessage = encodeURIComponent(message);
-    const fullNumber = `91${phoneNumber.replace(/\D/g, '')}`; // Add country code & strip non-digits
-    const url = `https://wa.me/${fullNumber}?text=${encodedMessage}`;
-    window.open(url, "_blank");
-    setPhoneNumber('');
+    html2pdf().set(options).from(element).save().then(() => {
+      // Restore scroll styling after PDF is saved
+      element.classList.add("scrollable-container");
+    });
   };
 
 
-  const totalOriginalPrice = items.reduce((total, item, index) => total + item.price * quantities[index], 0);
-  const totalTaxAmount = items.reduce((total, item, index) => total + item.price * quantities[index] * (gstRates[index] + cgstRates[index]), 0);
-  const totalItems = quantities.reduce((sum, q) => sum + q, 0); // ✅ define this here
-  const totalDiscount = parseFloat(manualDiscount || 0);
-  const totalPriceWithTax =
-    totalOriginalPrice - totalDiscount +
-    totalTaxAmount +
-    parseFloat(serviceCharge || 0) +
-    parseFloat(deliveryCharge || 0);
+  const handleItemChange = (id, field, value) => {
+    setItems(items.map(item => item.id === id ? { ...item, [field]: value, price: field === 'rate' || field === 'size' ? item.rate * item.size : item.price } : item));
+  };
 
+  const handleAddItem = () => {
+    setItems([...items, { id: uuidv4(), name: "", location: "", type: "", size: "", rate: 0, price: 0 }]);
+  };
 
+  const handleRemoveItem = (id) => {
+    setItems(items.filter(item => item.id !== id));
+  };
 
+  const subtotal = items.reduce((acc, item) => acc + Number(item.price), 0);
+  const total = subtotal + Number(tax) - Number(discount);
 
   return (
-    <div className='mainDiv'>
-      <main className="cart-container">
+    <div ref={formRef} className="quotation-container scrollable-container">
 
-        <div className="cart-content">
-          <div className="cart-items">
-            {items.map((item, index) => (
-              <div key={index} className="cart-item">
-                <div className="item-info">
-                  <h4>{item.name}</h4>
-                  <p>Seller: {item.seller}</p>
-                  <p>
-                    ₹{item.price}{' '}
-                    <span style={{ textDecoration: 'line-through' }}>₹{item.original}</span>{' '}
-                    <span style={{ color: 'green' }}>{item.discount}% off</span>
-                  </p>
-                  <p>
-                    Delivery by {getDeliveryDate()} Free <br />
-                    <small>7 Days Replacement Policy</small>
-                  </p>
-                  <div className="actions">
-                    <button onClick={() => decreaseQty(index)}>-</button>
-                    <span>{quantities[index]}</span>
-                    <button onClick={() => increaseQty(index)}>+</button>
-                    &nbsp;&nbsp;
-                    <span onClick={() => removeItem(index)} style={{ color: 'red', cursor: 'pointer', fontWeight: 500 }}>
-                      REMOVE ITEM
-                    </span>
+      <h1 className="quotation-title">Invoice</h1>
 
-                  </div>
-
-                  <div className="tax-dropdowns">
-                    <label>
-                      GST (%): &nbsp;
-                      <select value={gstRates[index]} onChange={(e) => handleGstChange(index, e.target.value)}>
-                        <option value={0}>0%</option>
-                        <option value={0.05}>5%</option>
-                        <option value={0.12}>12%</option>
-                        <option value={0.18}>18%</option>
-                        <option value={0.28}>28%</option>
-                      </select>
-                    </label>
-                    &nbsp;&nbsp;
-                    <label>
-                      CGST (%): &nbsp;
-                      <select value={cgstRates[index]} onChange={(e) => handleCgstChange(index, e.target.value)}>
-                        <option value={0}>0%</option>
-                        <option value={0.05}>5%</option>
-                        <option value={0.12}>12%</option>
-                        <option value={0.18}>18%</option>
-                        <option value={0.28}>28%</option>
-                      </select>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Price Summary */}
-          <div className="price-details">
-            <h3 style={{ color: 'blue' }}>PRICE DETAILS</h3>
-            <p>Price ({totalItems} items): <span>₹ {totalOriginalPrice.toLocaleString()}</span></p>
-            <p>GST + CGST Charges: <span>₹ {totalTaxAmount.toFixed(2)}</span></p>
-            <p>
-              Discount: ₹&nbsp;
-               <input
-                type="number"
-                value={manualDiscount}
-                onChange={(e) => setManualDiscount(e.target.value)}
-                style={{ width: '80px', color: 'green', border: '1px solid #ccc', borderRadius: '4px' }}
-              />
-            </p>
-
-            <p>
-              Delivery Charges: ₹&nbsp;
-              <input
-                type="number"
-                value={deliveryCharge}
-                onChange={(e) => setDeliveryCharge(e.target.value)}
-                style={{ width: '80px' }}
-              />
-            </p>
-
-
-            <p>
-              Service Charge: ₹&nbsp;
-              <input
-                type="number"
-                value={serviceCharge}
-                onChange={(e) => setServiceCharge(e.target.value)}
-                style={{ width: '80px' }}
-              />
-            </p>
-
-            <hr />
-            <p><strong>Total Amount:</strong> <span>₹ {totalPriceWithTax.toLocaleString()}</span></p>
-            <p style={{ color: 'green' }}>
-              You will save ₹ {totalDiscount.toLocaleString()} on this order
-            </p>
-            <input
-              type="tel"
-              placeholder="Enter WhatsApp number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className="phone-input"
-            />
-            <button className="apply-coupon" onClick={sendToWhatsApp}>
-              Send Invoice
-            </button>
-
-          </div>
+      <section className="quotation-section">
+        <h2>Client Information</h2>
+        <div className="TakeDetails">
+          <input placeholder="Client Name" value={client.name} onChange={e => setClient({ ...client, name: e.target.value })} />
+          <input placeholder="Contact Number" value={client.contact} onChange={e => setClient({ ...client, contact: e.target.value })} />
+          <input placeholder="Email Address" value={client.email} onChange={e => setClient({ ...client, email: e.target.value })} />
+          <textarea placeholder="Address" value={client.address} onChange={e => setClient({ ...client, address: e.target.value })} />
         </div>
-      </main>
+      </section>
+
+      <section className="quotation-section">
+        <h2>Invoice Details</h2>
+        <div className="TakeDetails">
+          <input placeholder="Quotation Date" value={quotation.date} readOnly />
+          <input placeholder="Valid Till" type="date" value={quotation.validTill} onChange={e => setQuotation({ ...quotation, validTill: e.target.value })} />
+          <input placeholder="Executive Name" value={quotation.executive} onChange={e => setQuotation({ ...quotation, executive: e.target.value })} />
+        </div>
+      </section>
+
+      <section className="quotation-section">
+        <h2>Property / Service Details</h2>
+        <table className="quotation-table">
+          <thead>
+            <tr>
+              <th>Property Name</th>
+              <th>Location</th>
+              <th>Type</th>
+              <th>Size (sq.ft)</th>
+              <th>Rate</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item) => (
+              <tr key={item.id}>
+                <td><input value={item.name} onChange={e => handleItemChange(item.id, "name", e.target.value)} /></td>
+                <td><input value={item.location} onChange={e => handleItemChange(item.id, "location", e.target.value)} /></td>
+                <td><input value={item.type} onChange={e => handleItemChange(item.id, "type", e.target.value)} /></td>
+                <td><input type="number" value={item.size} onChange={e => handleItemChange(item.id, "size", e.target.value)} /></td>
+                <td><input type="number" value={item.rate} onChange={e => handleItemChange(item.id, "rate", e.target.value)} /></td>
+                <td>{item.price.toFixed(2)}</td>
+                <td><button className="remove-btn" onClick={() => handleRemoveItem(item.id)}>Remove</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button className="add-btn" onClick={handleAddItem}>Add Property</button>
+      </section>
+
+      <section className="quotation-section cost-summary-box">
+        <h2>Cost Summary</h2>
+        <div className="input-group">
+          <label title="Enter applicable tax amount">Tax (₹):</label>
+          <input type="number" value={tax} onChange={e => setTax(e.target.value)} />
+        </div>
+        <div className="input-group">
+          <label title="Enter any discount offered">Discount (₹):</label>
+          <input type="number" value={discount} onChange={e => setDiscount(e.target.value)} />
+        </div>
+        <div className="summary-line">Subtotal: ₹{subtotal.toFixed(2)}</div>
+        <div className="summary-line total">Total: ₹{total.toFixed(2)}</div>
+      </section>
+
+      <section className="quotation-section">
+        <h2>Notes / Remarks</h2>
+        <textarea className="Notes" placeholder="Enter any additional notes or terms" value={notes} onChange={e => setNotes(e.target.value)} />
+      </section>
+
+      <button className="submit-btn" onClick={handleGeneratePDF}>
+        Generate Invoice PDF
+      </button>
+
+
     </div>
   );
-};
-
-export default Invoice;   
+}

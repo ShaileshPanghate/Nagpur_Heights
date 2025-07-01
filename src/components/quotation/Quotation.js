@@ -1,166 +1,142 @@
-import React, { useState, useEffect } from 'react';
-import './quotation.css';
+// QuotationForm.jsx
+import React, { useState, useRef } from "react";
+import html2pdf from "html2pdf.js";
+import { v4 as uuidv4 } from "uuid";
+import "./quotation.css";
 
-const Quotation = () => {
-  const [client, setClient] = useState({ name: '', phone: '', email: '', date: '' });
-  const [items, setItems] = useState([]);
-  const [itemInput, setItemInput] = useState({ service: '', desc: '', price: '', qty: 0, discount: 0, tax: 0 });
-  const [editingIndex, setEditingIndex] = useState(null);
+export default function Quotation() {
+  const [client, setClient] = useState({ name: "", contact: "", email: "", address: "" });
+  const [quotation, setQuotation] = useState({
+    id: uuidv4(),
+    date: new Date().toISOString().split("T")[0],
+    validTill: "",
+    executive: "",
+  });
 
-  // Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const [items, setItems] = useState([
+    { id: uuidv4(), name: "", location: "", type: "", size: "", rate: 0, price: 0 }
+  ]);
+  const [tax, setTax] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [notes, setNotes] = useState("");
 
-  useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('real-estate-quote')) || { client: {}, items: [] };
-    setClient(stored.client || {});
-    setItems(stored.items || []);
-  }, []);
+  const formRef = useRef();
 
-  useEffect(() => {
-    localStorage.setItem('real-estate-quote', JSON.stringify({ client, items }));
-  }, [client, items]);
+  const handleGeneratePDF = () => {
+    const element = formRef.current;
 
-  // const handleClientChange = (e) => {
-  //   setClient(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  // };
+    // Temporarily remove scroll style
+    element.classList.remove("scrollable-container");
 
-  const handleItemChange = (e) => {
-    setItemInput(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const addItem = () => {
-    if (!itemInput.service || !itemInput.price) return;
-    const newItem = { ...itemInput, price: parseFloat(itemInput.price), qty: parseInt(itemInput.qty), discount: parseFloat(itemInput.discount), tax: parseFloat(itemInput.tax) };
-    setItems([...items, newItem]);
-    resetItemForm();
-  };
-
-  const updateItem = () => {
-    const updated = items.map((item, i) => (i === editingIndex ? itemInput : item));
-    setItems(updated);
-    setEditingIndex(null);
-    resetItemForm();
-  };
-
-  const editItem = (index) => {
-    setEditingIndex(index);
-    setItemInput(items[index]);
-  };
-
-  const deleteItem = (index) => {
-    setItems(items.filter((_, i) => i !== index));
-  };
-
-  const resetItemForm = () => {
-    setItemInput({ service: '', desc: '', price: '', qty: 1, discount: 0, tax: 0 });
-  };
-
-  const calculateRowTotal = (item) => {
-    const price = item.price * item.qty;
-    const discountAmount = price * (item.discount / 100);
-    const taxAmount = (price - discountAmount) * (item.tax / 100);
-    return (price - discountAmount + taxAmount).toFixed(2);
-  };
-
-  const calculateSummary = () => {
-    let subtotal = 0, discount = 0, tax = 0;
-    items.forEach(item => {
-      const base = item.price * item.qty;
-      const dis = base * (item.discount / 100);
-      const tx = (base - dis) * (item.tax / 100);
-      subtotal += base;
-      discount += dis;
-      tax += tx;
-    });
-    return {
-      subtotal: subtotal.toFixed(2),
-      discount: discount.toFixed(2),
-      tax: tax.toFixed(2),
-      grandTotal: (subtotal - discount + tax).toFixed(2)
+    const options = {
+      margin: 0.5,
+      filename: `Quotation-${quotation.id}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
+
+    html2pdf().set(options).from(element).save().then(() => {
+      // Restore scroll styling after PDF is saved
+      element.classList.add("scrollable-container");
+    });
   };
 
-  // Pagination logic
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(items.length / itemsPerPage);
 
-  const summary = calculateSummary();
+  const handleItemChange = (id, field, value) => {
+    setItems(items.map(item => item.id === id ? { ...item, [field]: value, price: field === 'rate' || field === 'size' ? item.rate * item.size : item.price } : item));
+  };
+
+  const handleAddItem = () => {
+    setItems([...items, { id: uuidv4(), name: "", location: "", type: "", size: "", rate: 0, price: 0 }]);
+  };
+
+  const handleRemoveItem = (id) => {
+    setItems(items.filter(item => item.id !== id));
+  };
+
+  const subtotal = items.reduce((acc, item) => acc + Number(item.price), 0);
+  const total = subtotal + Number(tax) - Number(discount);
 
   return (
-    <div className="quote-container">
+    <div ref={formRef} className="quotation-container scrollable-container">
 
-      <div className="item-form">
-        <input name="service" placeholder="Property / Service" value={itemInput.service} onChange={handleItemChange} />
-        <input name="desc" placeholder="Description" value={itemInput.desc} onChange={handleItemChange} />
-        <input name="price" type="number" placeholder="Unit Price" value={itemInput.price} onChange={handleItemChange} />
-        <input name="qty" type="number" placeholder="Qty" value={itemInput.qty} onChange={handleItemChange} />
-        <input name="discount" type="number" placeholder="Discount (%)" value={itemInput.discount} onChange={handleItemChange} />
-        <input name="tax" type="number" placeholder="Tax (%)" value={itemInput.tax} onChange={handleItemChange} />
-        {editingIndex !== null ? (
-          <button onClick={updateItem}>Update</button>
-        ) : (
-          <button onClick={addItem}>+ Add</button>
-        )}
-      </div>
-      <div className="table-wrapper">
-        <table className="quote-table">
+      <h1 className="quotation-title">Quotation</h1>
+
+      <section className="quotation-section">
+        <h2>Client Information</h2>
+        <div className="TakeDetails">
+          <input placeholder="Client Name" value={client.name} onChange={e => setClient({ ...client, name: e.target.value })} />
+          <input placeholder="Contact Number" value={client.contact} onChange={e => setClient({ ...client, contact: e.target.value })} />
+          <input placeholder="Email Address" value={client.email} onChange={e => setClient({ ...client, email: e.target.value })} />
+          <textarea placeholder="Address" value={client.address} onChange={e => setClient({ ...client, address: e.target.value })} />
+        </div>
+      </section>
+
+      <section className="quotation-section">
+        <h2>Quotation Details</h2>
+        <div className="TakeDetails">
+          <input placeholder="Quotation Date" value={quotation.date} readOnly />
+          <input placeholder="Valid Till" type="date" value={quotation.validTill} onChange={e => setQuotation({ ...quotation, validTill: e.target.value })} />
+          <input placeholder="Executive Name" value={quotation.executive} onChange={e => setQuotation({ ...quotation, executive: e.target.value })} />
+        </div>
+      </section>
+
+      <section className="quotation-section">
+        <h2>Property / Service Details</h2>
+        <table className="quotation-table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Property/Service</th>
-              <th>Description</th>
-              <th>Unit Price</th>
-              <th>Qty</th>
-              <th>Discount (%)</th>
-              <th>Tax (%)</th>
-              <th>Total</th>
+              <th>Property Name</th>
+              <th>Location</th>
+              <th>Type</th>
+              <th>Size (sq.ft)</th>
+              <th>Rate</th>
+              <th>Price</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {currentItems.map((item, i) => (
-              <tr key={i}>
-                <td>{indexOfFirstItem + i + 1}</td>
-                <td>{item.service}</td>
-                <td>{item.desc}</td>
-                <td>₹{item.price}</td>
-                <td>{item.qty}</td>
-                <td>{item.discount}</td>
-                <td>{item.tax}</td>
-                <td>₹{calculateRowTotal(item)}</td>
-                <td>
-                  <button onClick={() => editItem(indexOfFirstItem + i)}>Edit</button>
-                  <button onClick={() => deleteItem(indexOfFirstItem + i)}>Delete</button>
-                </td>
+            {items.map((item) => (
+              <tr key={item.id}>
+                <td><input value={item.name} onChange={e => handleItemChange(item.id, "name", e.target.value)} /></td>
+                <td><input value={item.location} onChange={e => handleItemChange(item.id, "location", e.target.value)} /></td>
+                <td><input value={item.type} onChange={e => handleItemChange(item.id, "type", e.target.value)} /></td>
+                <td><input type="number" value={item.size} onChange={e => handleItemChange(item.id, "size", e.target.value)} /></td>
+                <td><input type="number" value={item.rate} onChange={e => handleItemChange(item.id, "rate", e.target.value)} /></td>
+                <td>{item.price.toFixed(2)}</td>
+                <td><button className="remove-btn" onClick={() => handleRemoveItem(item.id)}>Remove</button></td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
-      {/* Pagination */}
-      <div className="pagination">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentPage(i + 1)}
-            className={currentPage === i + 1 ? 'active' : ''}
-          >
-            {i + 1}
-          </button>
-        ))}
-      </div>
+        <button className="add-btn" onClick={handleAddItem}>Add Property</button>
+      </section>
 
-      <div className="quote-summary">
-        <p>Subtotal: ₹{summary.subtotal}</p>
-        <p>Discount: ₹{summary.discount}</p>
-        <p>Tax: ₹{summary.tax}</p>
-        <h3>Grand Total: ₹{summary.grandTotal}</h3>
-      </div>
+      <section className="quotation-section cost-summary-box">
+        <h2>Cost Summary</h2>
+        <div className="input-group">
+          <label title="Enter applicable tax amount">Tax (₹):</label>
+          <input type="number" value={tax} onChange={e => setTax(e.target.value)} />
+        </div>
+        <div className="input-group">
+          <label title="Enter any discount offered">Discount (₹):</label>
+          <input type="number" value={discount} onChange={e => setDiscount(e.target.value)} />
+        </div>
+        <div className="summary-line">Subtotal: ₹{subtotal.toFixed(2)}</div>
+        <div className="summary-line total">Total: ₹{total.toFixed(2)}</div>
+      </section>
+
+      <section className="quotation-section">
+        <h2>Notes / Remarks</h2>
+        <textarea className="Notes" placeholder="Enter any additional notes or terms" value={notes} onChange={e => setNotes(e.target.value)} />
+      </section>
+
+      <button className="submit-btn" onClick={handleGeneratePDF}>
+        Generate Quotation PDF
+      </button>
+
+
     </div>
   );
-};
-
-export default Quotation;
+}

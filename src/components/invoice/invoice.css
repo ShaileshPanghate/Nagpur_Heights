@@ -1,351 +1,142 @@
-.mainDiv{
-  width: 100%;
-}
-.cart-container {
-  max-height: 75vh;
-  max-width: 1200px;
-  display: flex;
-  /* flex-direction: column; */
-  overflow: hidden;
-  /* Prevents parent from scrolling */
-}
-
-.cart-content {
-  flex: 1;
-  display: flex;
-  gap: 2rem;
-  padding: 1rem;
-  overflow-y: auto;
-  /* 👈 Enables vertical scrolling */
-  max-height: calc(100vh - 60px);
-  /* Adjust 60px if you have a header */
-}
-.cart-container {
-  padding: 20px;
-  background-color: #f4f1e6;
-  font-family: 'Segoe UI', sans-serif;
-}
-.cart-items {
-  flex: 2;
-  max-width: 70%;
-}
-
-.price-details {
-  flex: 1;
-  min-width: 35%;
-  position: sticky;
-  top: 0;
-  align-self: flex-start;
-  background: #f9f9f9;
-  padding: 1rem;
-  height: fit-content;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-
-
-.cart-container h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-
-/* Scrollable area inside the main container */
-.scrollable-container {
-  max-height: 40vh;
-  overflow-y: auto;
-  padding-right: 10px;
-}
-
-/* Flex container for cart + price section */
-.cart-content {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-/* Cart items */
-.cart-items {
-  flex: 2;
-  background-color: white;
-  padding: 20px;
-  border-radius: 6px;
-}
-
-.cart-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 15px;
-}
-
-.cart-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-3px);
-  background-color: #fffcfb;
-}
-
-.item-img {
-  width: 100px;
-  height: 100px;
-  background-color: #eee;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  border-radius: 4px;
-}
-
-.item-info {
-  flex: 1;
-}
-
-.item-info h4 {
-  margin: 0 0 5px;
-  font-size: 1.1rem;
-}
-
-.item-info p {
-  margin: 3px 0;
-  font-size: 0.9rem;
-  color: #333;
-}
-
-.actions {
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.actions button {
-  padding: 3px 8px;
-  background-color: #eee;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.actions span {
-  font-size: 0.9rem;
-  cursor: pointer;
-  color: #b91c1c;
-}
-
-.place-order {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  background-color: #c4147d;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Price details */
-.price-details {
-  flex: 1;
-  background-color: white;
-  padding: 20px;
-  border-radius: 6px;
-  height: fit-content;
-}
-
-.price-details h3 {
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-}
-
-.price-details p {
-  display: flex;
-  justify-content: space-between;
-  margin: 8px 0;
-  font-size: 0.95rem;
-}
-
-.price-details hr {
-  margin: 10px 0;
-}
-
-.price-details input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 10px;
-  margin-bottom: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.apply-coupon {
-  width: 100%;
-  padding: 10px;
-  background-color: rgb(96, 96, 248);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.apply-coupon:hover {
-  background-color: blue;
-  transform: scale(1.05);
-}
-
+/* QuotationForm.css */
+/* Add this to QuotationForm.css */
 
 .scrollable-container {
-  max-height: 85vh;
-  /* Adjust based on layout */
+  max-height: 74vh;
   overflow-y: auto;
-  padding-right: 10px;
+  padding-right: 1rem;
   scroll-behavior: smooth;
 }
 
-.scrollable-container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.scrollable-container::-webkit-scrollbar-thumb {
-  background: #ccc;
+.quotation-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
   border-radius: 10px;
 }
 
-.scrollable-container::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
+.quotation-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
-.cart-container {
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+.quotation-section {
+  margin-bottom: 2rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
-.editable-input {
-  width: 80px;
-  margin-left: 10px;
-  padding: 2px 5px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+.TakeDetails{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10;
+  margin: 1rem;
+}
+.quotation-section h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-.phone-input {
-  padding: 8px;
-  margin: 10px 0;
-  width: 250px;
+.TakeDetails input,
+.TakeDetails textarea {
+  width: 80%;
+  padding: 0.5rem;
+  margin: 1rem;
+  margin-bottom: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
-/* Responsive Styles */
-@media (max-width: 1024px) {
-  .cart-content {
-    flex-direction: column;
-  }
-
-  .cart-items,
-  .price-details {
-    width: 100%;
-  }
+.quotation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
 }
 
-@media (max-width: 768px) {
-  .cart-item {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 5%;
-  }
-
-  .item-img {
-    width: 100%;
-    height: auto;
-  }
-
-  .actions {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .price-details p {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .price-details input,
-  .apply-coupon,
-  .place-order {
-    font-size: 1rem;
-  }
+.quotation-table th,
+.quotation-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: center;
 }
 
-@media (max-width: 480px) {
-  .cart-content {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    width: 110%;
-  }
-  .cart-items{
-    width: 100%;
-  }
-  .price-details {
-    width: 70%;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  }
+.quotation-table input {
+  width: 100%;
+  padding: 0.25rem;
+}
 
-  .price-details h3 {
-    font-size: 1.2rem;
-    text-align: center;
-    margin-bottom: 12px;
-    color: blue;
-  }
+.add-btn,
+.remove-btn,
+.submit-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1rem;
+}
 
-  .price-details p {
-    font-size: 0.95rem;
-    margin: 8px 0;
-    padding: 1%;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-  }
+.remove-btn {
+  background-color: #dc3545;
+}
 
-  .price-details p span {
-    font-weight: 600;
-    margin-top: 4px;
-  }
+.submit-btn {
+  width: 100%;
+  margin-top: 2rem;
+  background-color: #28a745;
+}
 
-  .price-details hr {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 12px 0;
-  }
+.total {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.75rem;
+}
 
-  .price-details .apply-coupon {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    background-color:  rgb(96, 96, 248);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    margin-top: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
- .phone-input:focus {
-    border-color:  rgb(96, 96, 248); /* Changes border color when input is focused */
-    background-color: #fff; /* Changes background color when focused */
-    outline: none; /* Removes the default focus outline */
-  }
-  .price-details .apply-coupon:hover {
-    background-color:  rgb(96, 96, 248);
+.input-group label {
+  min-width: 120px;
+  font-weight: 500;
+}
+
+.cost-summary-box {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fefefe;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.summary-line {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.summary-line.total {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #0a7f20;
+}
+.Notes{
+  width: 100%;
+  height: 50px;
+}
+@media print {
+  .scrollable-container {
+    max-height: unset;
+    overflow: visible;
   }
 }

@@ -17,6 +17,7 @@
     "file-saver": "^2.0.5",
     "framer-motion": "^12.7.4",
     "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.3",
     "jspdf": "^3.0.1",
     "notistack": "^3.0.2",
     "react": "^18.2.0",
