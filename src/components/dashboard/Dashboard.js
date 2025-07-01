@@ -37,7 +37,7 @@ const Dashboard = () => {
     { label: "Available Flats/Plots", value: totalAvailableFlats, icon: <FaHome />, path: "/projects" },
     { label: "Sold Flats/Plots", value: totalSoldFlats, icon: <FaCheckCircle />, path: "/projects" },
     { label: "Total Employees", value: totalEmp, icon: <FaUsers />, path: "/employees" },
-    { label: "Revenue", value: 12430, icon: <FaRupeeSign />, path: "/" },
+    { label: "Revenue", value: 3142430, icon: <FaRupeeSign />, path: "/" },
   ];
 
 
